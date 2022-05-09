@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Apartman_yonetimi_msModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="apartman_islemleri">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aparman_adi" Type="nchar" MaxLength="50" />
+          <Property Name="blok" Type="nchar" MaxLength="50" />
+          <Property Name="adres" Type="nchar" MaxLength="150" />
+          <Property Name="daire_sayisi" Type="int" />
+          <Property Name="yonetici_id" Type="int" />
+        </EntityType>
+        <EntityType Name="borc_tipi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="borc_tipi" Type="nchar" MaxLength="50" />
+          <Property Name="aciklama" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="borclar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategori" Type="nchar" MaxLength="50" />
+          <Property Name="kullanici" Type="nchar" MaxLength="50" />
+          <Property Name="tutar" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="aciklama" Type="nchar" MaxLength="150" />
+          <Property Name="tarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="daire">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipi" Type="nchar" MaxLength="50" />
+          <Property Name="kira_tutari" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="aidat" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="apartman_id" Type="int" Nullable="false" />
+          <Property Name="daire_no" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="gelirler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategori" Type="nchar" MaxLength="50" />
+          <Property Name="tutar" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="aciklama" Type="nchar" MaxLength="50" />
+          <Property Name="tarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="giderler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategori" Type="nchar" MaxLength="50" />
+          <Property Name="tutar" Type="nchar" MaxLength="50" />
+          <Property Name="aciklama" Type="nchar" MaxLength="50" />
+          <Property Name="tarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="kullanici">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tc_no" Type="nchar" MaxLength="11" />
+          <Property Name="ad" Type="nchar" MaxLength="50" />
+          <Property Name="soyad" Type="nchar" MaxLength="50" />
+          <Property Name="email" Type="nchar" MaxLength="50" />
+          <Property Name="telefon" Type="nchar" MaxLength="50" />
+          <Property Name="apartman_id" Type="int" />
+          <Property Name="daire_no" Type="nchar" MaxLength="50" />
+          <Property Name="ev_durumu" Type="nchar" MaxLength="50" />
+          <Property Name="rol" Type="nchar" MaxLength="50" />
+          <Property Name="sifre" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="islem" Type="nchar" MaxLength="50" />
+          <Property Name="ip" Type="nchar" MaxLength="50" />
+          <Property Name="tc_no" Type="nchar" MaxLength="11" />
+          <Property Name="aciklama" Type="nchar" MaxLength="150" />
+          <Property Name="tarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="odenen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="odeyen" Type="nchar" MaxLength="50" />
+          <Property Name="miktar" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="odeme_turu" Type="nchar" MaxLength="50" />
+          <Property Name="odeme_onaylayan" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="yetki">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tc_no" Type="nchar" MaxLength="11" />
+          <Property Name="gelir_islemleri" Type="tinyint" />
+          <Property Name="gider_islemleri" Type="tinyint" />
+          <Property Name="kasa_islemleri" Type="tinyint" />
+          <Property Name="borc_islemleri" Type="tinyint" />
+          <Property Name="daire_islemleri" Type="tinyint" />
+          <Property Name="kullanici_islemleri" Type="tinyint" />
+        </EntityType>
+        <Association Name="FK_daire_apartman_islemleri">
+          <End Role="apartman_islemleri" Type="Self.apartman_islemleri" Multiplicity="1" />
+          <End Role="daire" Type="Self.daire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apartman_islemleri">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="daire">
+              <PropertyRef Name="apartman_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Apartman_yonetimi_msModelStoreContainer">
+          <EntitySet Name="apartman_islemleri" EntityType="Self.apartman_islemleri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="borc_tipi" EntityType="Self.borc_tipi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="borclar" EntityType="Self.borclar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="daire" EntityType="Self.daire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gelirler" EntityType="Self.gelirler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="giderler" EntityType="Self.giderler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kullanici" EntityType="Self.kullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="log" EntityType="Self.log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="odenen" EntityType="Self.odenen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yetki" EntityType="Self.yetki" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_daire_apartman_islemleri" Association="Self.FK_daire_apartman_islemleri">
+            <End Role="apartman_islemleri" EntitySet="apartman_islemleri" />
+            <End Role="daire" EntitySet="daire" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Apartman_yonetimi_msModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="apartman_islemleri">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aparman_adi" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="blok" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="adres" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="daire_sayisi" Type="Int32" />
+          <Property Name="yonetici_id" Type="Int32" />
+          <NavigationProperty Name="daires" Relationship="Self.FK_daire_apartman_islemleri" FromRole="apartman_islemleri" ToRole="daire" />
+        </EntityType>
+        <EntityType Name="borc_tipi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="borc_tipi1" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="aciklama" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="borclar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategori" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="kullanici" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="tutar" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="aciklama" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="daire">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipi" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="kira_tutari" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="aidat" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="apartman_id" Type="Int32" Nullable="false" />
+          <Property Name="daire_no" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="apartman_islemleri" Relationship="Self.FK_daire_apartman_islemleri" FromRole="daire" ToRole="apartman_islemleri" />
+        </EntityType>
+        <EntityType Name="gelirler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategori" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="tutar" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="aciklama" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="giderler">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategori" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="tutar" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="aciklama" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="kullanici">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tc_no" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="ad" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="soyad" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="telefon" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="apartman_id" Type="Int32" />
+          <Property Name="daire_no" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="ev_durumu" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="rol" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="sifre" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="duyuru">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="duyuru_adi" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="duyuru_konusu" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="yonetici_id" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="aciklama" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="odenen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="odeyen" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="miktar" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="odeme_turu" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="odeme_onaylayan" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="yetki">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tc_no" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="gelir_islemleri" Type="Byte" />
+          <Property Name="gider_islemleri" Type="Byte" />
+          <Property Name="kasa_islemleri" Type="Byte" />
+          <Property Name="borc_islemleri" Type="Byte" />
+          <Property Name="daire_islemleri" Type="Byte" />
+          <Property Name="kullanici_islemleri" Type="Byte" />
+        </EntityType>
+        <Association Name="FK_daire_apartman_islemleri">
+          <End Role="apartman_islemleri" Type="Self.apartman_islemleri" Multiplicity="1" />
+          <End Role="daire" Type="Self.daire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="apartman_islemleri">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="daire">
+              <PropertyRef Name="apartman_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Apartman_yonetimi_msEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="apartman_islemleri" EntityType="Self.apartman_islemleri" />
+          <EntitySet Name="borc_tipi" EntityType="Self.borc_tipi" />
+          <EntitySet Name="borclars" EntityType="Self.borclar" />
+          <EntitySet Name="daires" EntityType="Self.daire" />
+          <EntitySet Name="gelirlers" EntityType="Self.gelirler" />
+          <EntitySet Name="giderlers" EntityType="Self.giderler" />
+          <EntitySet Name="kullanicis" EntityType="Self.kullanici" />
+          <EntitySet Name="duyurus1" EntityType="Apartman_yonetimi_msModel.duyuru" />
+          <EntitySet Name="odenens" EntityType="Self.odenen" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="yetkis" EntityType="Self.yetki" />
+          <AssociationSet Name="FK_daire_apartman_islemleri" Association="Self.FK_daire_apartman_islemleri">
+            <End Role="apartman_islemleri" EntitySet="apartman_islemleri" />
+            <End Role="daire" EntitySet="daires" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Apartman_yonetimi_msModelStoreContainer" CdmEntityContainer="Apartman_yonetimi_msEntities">
+          <EntitySetMapping Name="apartman_islemleri">
+            <EntityTypeMapping TypeName="Apartman_yonetimi_msModel.apartman_islemleri">
+              <MappingFragment StoreEntitySet="apartman_islemleri">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="aparman_adi" ColumnName="aparman_adi" />
+                <ScalarProperty Name="blok" ColumnName="blok" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="daire_sayisi" ColumnName="daire_sayisi" />
+                <ScalarProperty Name="yonetici_id" ColumnName="yonetici_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="borc_tipi">
+            <EntityTypeMapping TypeName="Apartman_yonetimi_msModel.borc_tipi">
+              <MappingFragment StoreEntitySet="borc_tipi">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="borc_tipi1" ColumnName="borc_tipi" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="borclars">
+            <EntityTypeMapping TypeName="Apartman_yonetimi_msModel.borclar">
+              <MappingFragment StoreEntitySet="borclar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kategori" ColumnName="kategori" />
+                <ScalarProperty Name="kullanici" ColumnName="kullanici" />
+                <ScalarProperty Name="tutar" ColumnName="tutar" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="daires">
+            <EntityTypeMapping TypeName="Apartman_yonetimi_msModel.daire">
+              <MappingFragment StoreEntitySet="daire">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tipi" ColumnName="tipi" />
+                <ScalarProperty Name="kira_tutari" ColumnName="kira_tutari" />
+                <ScalarProperty Name="aidat" ColumnName="aidat" />
+                <ScalarProperty Name="apartman_id" ColumnName="apartman_id" />
+                <ScalarProperty Name="daire_no" ColumnName="daire_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gelirlers">
+            <EntityTypeMapping TypeName="Apartman_yonetimi_msModel.gelirler">
+              <MappingFragment StoreEntitySet="gelirler">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kategori" ColumnName="kategori" />
+                <ScalarProperty Name="tutar" ColumnName="tutar" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="giderlers">
+            <EntityTypeMapping TypeName="Apartman_yonetimi_msModel.giderler">
+              <MappingFragment StoreEntitySet="giderler">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kategori" ColumnName="kategori" />
+                <ScalarProperty Name="tutar" ColumnName="tutar" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kullanicis">
+            <EntityTypeMapping TypeName="Apartman_yonetimi_msModel.kullanici">
+              <MappingFragment StoreEntitySet="kullanici">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tc_no" ColumnName="tc_no" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="apartman_id" ColumnName="apartman_id" />
+                <ScalarProperty Name="daire_no" ColumnName="daire_no" />
+                <ScalarProperty Name="ev_durumu" ColumnName="ev_durumu" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="duyurus1">
+            <EntityTypeMapping TypeName="Apartman_yonetimi_msModel.duyuru">
+              <MappingFragment StoreEntitySet="log">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="duyuru_adi" ColumnName="islem" />
+                <ScalarProperty Name="duyuru_konusu" ColumnName="ip" />
+                <ScalarProperty Name="yonetici_id" ColumnName="tc_no" />
+                <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="odenens">
+            <EntityTypeMapping TypeName="Apartman_yonetimi_msModel.odenen">
+              <MappingFragment StoreEntitySet="odenen">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="odeyen" ColumnName="odeyen" />
+                <ScalarProperty Name="miktar" ColumnName="miktar" />
+                <ScalarProperty Name="odeme_turu" ColumnName="odeme_turu" />
+                <ScalarProperty Name="odeme_onaylayan" ColumnName="odeme_onaylayan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Apartman_yonetimi_msModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yetkis">
+            <EntityTypeMapping TypeName="Apartman_yonetimi_msModel.yetki">
+              <MappingFragment StoreEntitySet="yetki">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tc_no" ColumnName="tc_no" />
+                <ScalarProperty Name="gelir_islemleri" ColumnName="gelir_islemleri" />
+                <ScalarProperty Name="gider_islemleri" ColumnName="gider_islemleri" />
+                <ScalarProperty Name="kasa_islemleri" ColumnName="kasa_islemleri" />
+                <ScalarProperty Name="borc_islemleri" ColumnName="borc_islemleri" />
+                <ScalarProperty Name="daire_islemleri" ColumnName="daire_islemleri" />
+                <ScalarProperty Name="kullanici_islemleri" ColumnName="kullanici_islemleri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

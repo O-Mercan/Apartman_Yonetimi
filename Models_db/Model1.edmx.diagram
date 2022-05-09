@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="844324b9da094e8eb87ae6eda235cb3a" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="Apartman_yonetimi_msModel.apartman_islemleri" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Apartman_yonetimi_msModel.borc_tipi" Width="1.5" PointX="2.125" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Apartman_yonetimi_msModel.borclar" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Apartman_yonetimi_msModel.daire" Width="1.5" PointX="3.375" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Apartman_yonetimi_msModel.gelirler" Width="1.5" PointX="7.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Apartman_yonetimi_msModel.giderler" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Apartman_yonetimi_msModel.kullanici" Width="1.5" PointX="10.625" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Apartman_yonetimi_msModel.duyuru" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Apartman_yonetimi_msModel.odenen" Width="1.5" PointX="0.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Apartman_yonetimi_msModel.sysdiagram" Width="1.5" PointX="13" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Apartman_yonetimi_msModel.yetki" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
+        <AssociationConnector Association="Apartman_yonetimi_msModel.FK_daire_apartman_islemleri" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
